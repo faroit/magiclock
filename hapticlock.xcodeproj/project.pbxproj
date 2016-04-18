@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		124952C61CC15ED500DEFF0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 124952C51CC15ED500DEFF0C /* AppDelegate.m */; };
+		124952C91CC15ED500DEFF0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 124952C81CC15ED500DEFF0C /* main.m */; };
+		124952CB1CC15ED500DEFF0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 124952CA1CC15ED500DEFF0C /* Assets.xcassets */; };
+		124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124952F01CC2B84900DEFF0C /* MainMenu.xib */; };
+		124952F31CC39DC300DEFF0C /* trayicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F21CC39DC300DEFF0C /* trayicon.png */; };
+		124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F41CC39DDA00DEFF0C /* trayicon-tic.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		124952C11CC15ED500DEFF0C /* hapticlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hapticlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		124952C41CC15ED500DEFF0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		124952C51CC15ED500DEFF0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		124952C81CC15ED500DEFF0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		124952CA1CC15ED500DEFF0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		124952CF1CC15ED500DEFF0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		124952F01CC2B84900DEFF0C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		124952F21CC39DC300DEFF0C /* trayicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trayicon.png; sourceTree = "<group>"; };
+		124952F41CC39DDA00DEFF0C /* trayicon-tic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		124952BE1CC15ED500DEFF0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		124952B81CC15ED500DEFF0C = {
+			isa = PBXGroup;
+			children = (
+				124952C31CC15ED500DEFF0C /* hapticlock */,
+				124952C21CC15ED500DEFF0C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		124952C21CC15ED500DEFF0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				124952C11CC15ED500DEFF0C /* hapticlock.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		124952C31CC15ED500DEFF0C /* hapticlock */ = {
+			isa = PBXGroup;
+			children = (
+				124952F01CC2B84900DEFF0C /* MainMenu.xib */,
+				124952C41CC15ED500DEFF0C /* AppDelegate.h */,
+				124952C51CC15ED500DEFF0C /* AppDelegate.m */,
+				124952CA1CC15ED500DEFF0C /* Assets.xcassets */,
+				124952CF1CC15ED500DEFF0C /* Info.plist */,
+				124952C71CC15ED500DEFF0C /* Supporting Files */,
+			);
+			name = hapticlock;
+			path = "feel-the-clock";
+			sourceTree = "<group>";
+		};
+		124952C71CC15ED500DEFF0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				124952F41CC39DDA00DEFF0C /* trayicon-tic.png */,
+				124952F21CC39DC300DEFF0C /* trayicon.png */,
+				124952C81CC15ED500DEFF0C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		124952C01CC15ED500DEFF0C /* hapticlock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "hapticlock" */;
+			buildPhases = (
+				124952BD1CC15ED500DEFF0C /* Sources */,
+				124952BE1CC15ED500DEFF0C /* Frameworks */,
+				124952BF1CC15ED500DEFF0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hapticlock;
+			productName = "feel-the-clock";
+			productReference = 124952C11CC15ED500DEFF0C /* hapticlock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		124952B91CC15ED500DEFF0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Fabian-Robert Stöter";
+				TargetAttributes = {
+					124952C01CC15ED500DEFF0C = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "hapticlock" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 124952B81CC15ED500DEFF0C;
+			productRefGroup = 124952C21CC15ED500DEFF0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				124952C01CC15ED500DEFF0C /* hapticlock */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		124952BF1CC15ED500DEFF0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */,
+				124952CB1CC15ED500DEFF0C /* Assets.xcassets in Resources */,
+				124952F31CC39DC300DEFF0C /* trayicon.png in Resources */,
+				124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		124952BD1CC15ED500DEFF0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				124952C91CC15ED500DEFF0C /* main.m in Sources */,
+				124952C61CC15ED500DEFF0C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		124952D01CC15ED500DEFF0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		124952D11CC15ED500DEFF0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		124952D31CC15ED500DEFF0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "feel-the-clock/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.hapticlock;
+				PRODUCT_NAME = hapticlock;
+			};
+			name = Debug;
+		};
+		124952D41CC15ED500DEFF0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "feel-the-clock/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.hapticlock;
+				PRODUCT_NAME = hapticlock;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "hapticlock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				124952D01CC15ED500DEFF0C /* Debug */,
+				124952D11CC15ED500DEFF0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "hapticlock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				124952D31CC15ED500DEFF0C /* Debug */,
+				124952D41CC15ED500DEFF0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 124952B91CC15ED500DEFF0C /* Project object */;
+}
