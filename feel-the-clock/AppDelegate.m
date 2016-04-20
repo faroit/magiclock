@@ -8,29 +8,35 @@
 
 @interface AppDelegate ()
 
+@property bool showBPM;
+
 @property (readwrite) int clock_count;
 @property (nonatomic) double bpm;
 
+@property double currentClockTime;
+@property double previousClockTime;
+
+@property int currentNumTicks;
+
+@property double intervalInNanoseconds;
+@property double tickDelta;
+
 @property (strong, nonatomic) NSStatusItem *statusItem;
+@property (strong, nonatomic) NSMenuItem * bpmMenu;
+
 
 @end
 
 @implementation AppDelegate
 
-double currentClockTime;
-double previousClockTime;
-
-int currentNumTicks;
-
-double intervalInNanoseconds;
-double tickDelta;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
     self.clock_count = BEAT_TICKS;
     self.bpm = 0;
-    currentClockTime = 0;
-    tickDelta = 0;
+    self.currentClockTime = 0;
+    self.tickDelta = 0;
+
     [self setupStatusItem];
 
     OSStatus status;
@@ -58,6 +64,7 @@ double tickDelta;
     [self updateStatusItemMenu];
 }
 
+
 - (void)resetStatusIconTimer {
     dispatch_async(dispatch_get_main_queue(), ^{
         [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)(0.06f)
@@ -76,12 +83,26 @@ double tickDelta;
 {
     NSMenu *menu = [[NSMenu alloc] init];
     
-    [menu addItemWithTitle:@"Show BPM" action:@selector(terminate:) keyEquivalent:@""];
+
+    self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPM) keyEquivalent:@""];
+    [self.bpmMenu setState: NSOnState];
+    self.showBPM = true;
 
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
 
     self.statusItem.menu = menu;
+}
+
+- (void)toggleBPM {
+    if (self.showBPM) {
+        self.showBPM = false;
+        [self.bpmMenu setState: NSOffState];
+    } else {
+        self.showBPM = true;
+        [self.bpmMenu setState: NSOnState];
+    }
+    
 }
 
 static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *srcRef) {
@@ -120,16 +141,16 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
             
             
             if (status == 0xF8) {
-                previousClockTime = currentClockTime;
-                currentClockTime = packet->timeStamp;
+                ad.previousClockTime = ad.currentClockTime;
+                ad.currentClockTime = packet->timeStamp;
 
-                if(previousClockTime > 0 && currentClockTime > 0)
+                if(ad.previousClockTime > 0 && ad.currentClockTime > 0)
                 {
-                    if (tickDelta==0) {
-                        tickDelta = currentClockTime-previousClockTime;
+                    if (ad.tickDelta==0) {
+                        ad.tickDelta = ad.currentClockTime-ad.previousClockTime;
                     }
                     else {
-                        tickDelta = ((currentClockTime-previousClockTime)*SMOOTHING_FACTOR) + ( tickDelta * ( 1.0 - SMOOTHING_FACTOR) );
+                        ad.tickDelta = ((ad.currentClockTime-ad.previousClockTime)*SMOOTHING_FACTOR) + ( ad.tickDelta * ( 1.0 - SMOOTHING_FACTOR) );
                     
                         const int64_t kOneThousand = 1000;
                         static mach_timebase_info_data_t s_timebase_info;
@@ -141,11 +162,11 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                         
                         // mach_absolute_time() returns billionth of seconds,
                         // so divide by one thousand to get nanoseconds
-                        intervalInNanoseconds = (uint64_t)((tickDelta * s_timebase_info.numer) / (kOneThousand * s_timebase_info.denom));
+                        ad.intervalInNanoseconds = (uint64_t)((ad.tickDelta * s_timebase_info.numer) / (kOneThousand * s_timebase_info.denom));
                         
-                        double newBPM = (1000000 / intervalInNanoseconds / BEAT_TICKS) * 60;
+                        double newBPM = (1000000 / ad.intervalInNanoseconds / BEAT_TICKS) * 60;
                         ad.bpm = (newBPM*SMOOTHING_FACTOR) + ( ad.bpm * ( 1.0f - SMOOTHING_FACTOR) );
-                        if (ad.bpm > 0) {
+                        if (ad.bpm > 0 && ad.showBPM) {
                             ad.statusItem.title = [formatter stringFromNumber:[NSNumber numberWithFloat:ad.bpm]];
                         } else {
                             ad.statusItem.title = @"";
@@ -161,7 +182,6 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
 
                     // Provide haptic feedback                   
                     [[NSHapticFeedbackManager defaultPerformer] performFeedbackPattern:NSHapticFeedbackPatternLevelChange performanceTime:NSHapticFeedbackPerformanceTimeNow];
-
                     [ad resetStatusIconTimer];
                 }
                 ad.clock_count++;
@@ -170,7 +190,7 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
             // Get MIDI stop msg
             else if (status == 0xFC) {
                 ad.clock_count = BEAT_TICKS;
-                ad.statusItem.title = @"Stop";
+                ad.statusItem.title = @"";
             }
 
             iByte += size;
