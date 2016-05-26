@@ -55,12 +55,8 @@
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kAlreadyBeenLaunched];
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
 
-        NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"How does it work?"];
-        [alert setInformativeText:@"1. Connect your Magic Trackpad 2\n2. Connect MIDI Clock Output to \"HaptiClock\""];
-        [alert addButtonWithTitle:@"Ok"];
-        [alert runModal];
-    }
+        [self showHelpModal];
+       }
     
     self.showBPM = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"];
 
@@ -75,6 +71,15 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
 
+}
+
+- (void)showHelpModal
+{
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:@"How does it work?"];
+    [alert setInformativeText:@"1. Connect your Magic Trackpad 2\n2. Connect MIDI Clock Output to \"HaptiClock\""];
+    [alert addButtonWithTitle:@"Ok"];
+    [alert runModal];
 }
 
 - (void)setupStatusItem
@@ -110,11 +115,12 @@
 - (void)updateStatusItemMenu
 {
     NSMenu *menu = [[NSMenu alloc] init];
-    
+
     self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPM) keyEquivalent:@""];
     [self.bpmMenu setState: NSOnState];
 
     [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"Help" action:@selector(showHelpModal) keyEquivalent:@""];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
 
     self.statusItem.menu = menu;
