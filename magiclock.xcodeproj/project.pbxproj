@@ -25,6 +25,7 @@
 		124952F01CC2B84900DEFF0C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		124952F21CC39DC300DEFF0C /* trayicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trayicon.png; sourceTree = "<group>"; };
 		124952F41CC39DDA00DEFF0C /* trayicon-tic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic.png"; sourceTree = "<group>"; };
+		125095951CF7179000CC06D3 /* magiclock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = magiclock.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +42,7 @@
 		124952B81CC15ED500DEFF0C = {
 			isa = PBXGroup;
 			children = (
+				125095951CF7179000CC06D3 /* magiclock.entitlements */,
 				124952C31CC15ED500DEFF0C /* hapticlock */,
 				124952C21CC15ED500DEFF0C /* Products */,
 			);
@@ -110,6 +112,14 @@
 					124952C01CC15ED500DEFF0C = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = Z3Y3U89W52;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -243,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = magiclock.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -259,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = magiclock.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
