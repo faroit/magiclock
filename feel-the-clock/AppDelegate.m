@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSStatusItem *statusItem;
 @property (strong, nonatomic) NSMenuItem * bpmMenu;
+@property NSNumberFormatter *formatter;
 
 
 @end
@@ -39,6 +40,14 @@
 
     [self setupStatusItem];
 
+    // Set Number formatter for MIDI tempo
+    self.formatter = [[NSNumberFormatter alloc] init];
+
+    [self.formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [self.formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+    [self.formatter setMaximumFractionDigits:1];
+    [self.formatter setMinimumFractionDigits:1];
+
     OSStatus status;
     
     MIDIClientRef   midiClient;
@@ -49,7 +58,7 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+
 }
 
 - (void)setupStatusItem
@@ -57,7 +66,7 @@
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusItem.title = @"";
 
-    // The image that will be shown in the menu bar, a 16x16 black png works best
+    // The image that will be shown in the menu bar
     self.statusItem.image = [NSImage imageNamed:@"trayicon"];
     self.statusItem.highlightMode = NO;
 
@@ -108,13 +117,8 @@
 static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *srcRef) {
     UInt16 nBytes;
     
+    // set pointer to app delegate to have access to the main UI thread
     AppDelegate * ad = (__bridge AppDelegate*)procRef;
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    [formatter setMaximumFractionDigits:1];
-    [formatter setMinimumFractionDigits:1];
     
     const MIDIPacket *packet = &list->packet[0];
     for (unsigned int i = 0; i < list->numPackets; i++) {
@@ -139,7 +143,6 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                 size = 1;
             }
             
-            
             if (status == 0xF8) {
                 ad.previousClockTime = ad.currentClockTime;
                 ad.currentClockTime = packet->timeStamp;
@@ -147,10 +150,11 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                 if(ad.previousClockTime > 0 && ad.currentClockTime > 0)
                 {
                     if (ad.tickDelta==0) {
-                        ad.tickDelta = ad.currentClockTime-ad.previousClockTime;
+                        ad.tickDelta = ad.currentClockTime - ad.previousClockTime;
                     }
                     else {
-                        ad.tickDelta = ((ad.currentClockTime-ad.previousClockTime)*SMOOTHING_FACTOR) + ( ad.tickDelta * ( 1.0 - SMOOTHING_FACTOR) );
+                        ad.tickDelta = ((ad.currentClockTime - ad.previousClockTime) * SMOOTHING_FACTOR) +
+                                       ( ad.tickDelta * ( 1.0 - SMOOTHING_FACTOR) );
                     
                         const int64_t kOneThousand = 1000;
                         static mach_timebase_info_data_t s_timebase_info;
@@ -167,7 +171,7 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                         double newBPM = (1000000 / ad.intervalInNanoseconds / BEAT_TICKS) * 60;
                         ad.bpm = (newBPM*SMOOTHING_FACTOR) + ( ad.bpm * ( 1.0f - SMOOTHING_FACTOR) );
                         if (ad.bpm > 0 && ad.showBPM) {
-                            ad.statusItem.title = [formatter stringFromNumber:[NSNumber numberWithFloat:ad.bpm]];
+                            ad.statusItem.title = [ad.formatter stringFromNumber:[NSNumber numberWithFloat:ad.bpm]];
                         } else {
                             ad.statusItem.title = @"";
                         }
@@ -176,7 +180,6 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                 }
 
                 if (ad.clock_count % BEAT_TICKS == 0) {
-                    printf(".");
                     ad.clock_count = 0;
                     ad.statusItem.image = [NSImage imageNamed:@"trayicon-tic"];
 
