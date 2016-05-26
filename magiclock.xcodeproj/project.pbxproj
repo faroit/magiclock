@@ -43,7 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				125095951CF7179000CC06D3 /* magiclock.entitlements */,
-				124952C31CC15ED500DEFF0C /* hapticlock */,
+				124952C31CC15ED500DEFF0C /* magiclock */,
 				124952C21CC15ED500DEFF0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,7 +56,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		124952C31CC15ED500DEFF0C /* hapticlock */ = {
+		124952C31CC15ED500DEFF0C /* magiclock */ = {
 			isa = PBXGroup;
 			children = (
 				124952F01CC2B84900DEFF0C /* MainMenu.xib */,
@@ -66,8 +66,7 @@
 				124952CF1CC15ED500DEFF0C /* Info.plist */,
 				124952C71CC15ED500DEFF0C /* Supporting Files */,
 			);
-			name = hapticlock;
-			path = "feel-the-clock";
+			path = magiclock;
 			sourceTree = "<group>";
 		};
 		124952C71CC15ED500DEFF0C /* Supporting Files */ = {
@@ -257,7 +256,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "feel-the-clock/Info.plist";
+				INFOPLIST_FILE = magiclock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
@@ -274,7 +273,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "feel-the-clock/Info.plist";
+				INFOPLIST_FILE = magiclock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
