@@ -51,10 +51,10 @@
     
     if (! [[NSUserDefaults standardUserDefaults] boolForKey:kAlreadyBeenLaunched]) {
         // First launch
-        
         // Setting userDefaults for next time
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kAlreadyBeenLaunched];
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
+
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setMessageText:@"How does it work?"];
         [alert setInformativeText:@"1. Connect your Magic Trackpad 2\n2. Connect MIDI Clock Output to \"HaptiClock\""];
@@ -83,7 +83,10 @@
     self.statusItem.title = @"";
 
     // The image that will be shown in the menu bar
-    self.statusItem.image = [NSImage imageNamed:@"trayicon"];
+    NSImage *image = [NSImage imageNamed:@"trayicon"];
+    [image setTemplate:YES];
+
+    self.statusItem.image = image;
     self.statusItem.highlightMode = NO;
 
     [self updateStatusItemMenu];
