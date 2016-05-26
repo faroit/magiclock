@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		124952C11CC15ED500DEFF0C /* hapticlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hapticlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		124952C11CC15ED500DEFF0C /* magiclock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magiclock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		124952C41CC15ED500DEFF0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		124952C51CC15ED500DEFF0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		124952C81CC15ED500DEFF0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -49,7 +49,7 @@
 		124952C21CC15ED500DEFF0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				124952C11CC15ED500DEFF0C /* hapticlock.app */,
+				124952C11CC15ED500DEFF0C /* magiclock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		124952C01CC15ED500DEFF0C /* hapticlock */ = {
+		124952C01CC15ED500DEFF0C /* magiclock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "hapticlock" */;
+			buildConfigurationList = 124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "magiclock" */;
 			buildPhases = (
 				124952BD1CC15ED500DEFF0C /* Sources */,
 				124952BE1CC15ED500DEFF0C /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = hapticlock;
+			name = magiclock;
 			productName = "feel-the-clock";
-			productReference = 124952C11CC15ED500DEFF0C /* hapticlock.app */;
+			productReference = 124952C11CC15ED500DEFF0C /* magiclock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -109,10 +109,11 @@
 				TargetAttributes = {
 					124952C01CC15ED500DEFF0C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = Z3Y3U89W52;
 					};
 				};
 			};
-			buildConfigurationList = 124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "hapticlock" */;
+			buildConfigurationList = 124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "magiclock" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -125,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				124952C01CC15ED500DEFF0C /* hapticlock */,
+				124952C01CC15ED500DEFF0C /* magiclock */,
 			);
 		};
 /* End PBXProject section */
@@ -242,11 +243,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "feel-the-clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.hapticlock;
-				PRODUCT_NAME = hapticlock;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
+				PRODUCT_NAME = magiclock;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -254,18 +259,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "feel-the-clock/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.hapticlock;
-				PRODUCT_NAME = hapticlock;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
+				PRODUCT_NAME = magiclock;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "hapticlock" */ = {
+		124952BC1CC15ED500DEFF0C /* Build configuration list for PBXProject "magiclock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				124952D01CC15ED500DEFF0C /* Debug */,
@@ -274,7 +283,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "hapticlock" */ = {
+		124952D21CC15ED500DEFF0C /* Build configuration list for PBXNativeTarget "magiclock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				124952D31CC15ED500DEFF0C /* Debug */,
