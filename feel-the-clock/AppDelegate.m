@@ -5,6 +5,7 @@
 #define BEAT_TICKS 24
 #define SMOOTHING_FACTOR 0.5f
 
+#define kAlreadyBeenLaunched @"AlreadyBeenLaunched"
 
 @interface AppDelegate ()
 
@@ -47,6 +48,21 @@
     [self.formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
     [self.formatter setMaximumFractionDigits:1];
     [self.formatter setMinimumFractionDigits:1];
+    
+    if (! [[NSUserDefaults standardUserDefaults] boolForKey:kAlreadyBeenLaunched]) {
+        // First launch
+        
+        // Setting userDefaults for next time
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kAlreadyBeenLaunched];
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"How does it work?"];
+        [alert setInformativeText:@"1. Connect your Magic Trackpad 2\n2. Connect MIDI Clock Output to \"HaptiClock\""];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert runModal];
+    }
+    
+    self.showBPM = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"];
 
     OSStatus status;
     
@@ -92,10 +108,8 @@
 {
     NSMenu *menu = [[NSMenu alloc] init];
     
-
     self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPM) keyEquivalent:@""];
     [self.bpmMenu setState: NSOnState];
-    self.showBPM = true;
 
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
@@ -106,9 +120,11 @@
 - (void)toggleBPM {
     if (self.showBPM) {
         self.showBPM = false;
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"showBPM"];
         [self.bpmMenu setState: NSOffState];
     } else {
         self.showBPM = true;
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
         [self.bpmMenu setState: NSOnState];
     }
     
@@ -153,6 +169,7 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                         ad.tickDelta = ad.currentClockTime - ad.previousClockTime;
                     }
                     else {
+                        // Moving average of clock rate
                         ad.tickDelta = ((ad.currentClockTime - ad.previousClockTime) * SMOOTHING_FACTOR) +
                                        ( ad.tickDelta * ( 1.0 - SMOOTHING_FACTOR) );
                     
