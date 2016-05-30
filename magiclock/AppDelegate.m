@@ -66,6 +66,7 @@
     
     self.showBPM = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"];
 
+    // Setting up Core MIDI
     OSStatus status;
     
     MIDIClientRef   midiClient;
@@ -73,6 +74,13 @@
     
     status = MIDIClientCreate(CFSTR("FtC MIDI client"), NULL, (__bridge void *)(self), &midiClient);
     status = MIDIDestinationCreate(midiClient, CFSTR("HaptiClock"), midiInputCallback, (__bridge void *)(self), &inPort);
+    
+    // Update the Menubar every 1s to show the BPM    
+    [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)(1.0f)
+                                     target: self
+                                   selector: @selector(renderBPM:)
+                                   userInfo: nil
+                                    repeats: YES];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -140,7 +148,7 @@
 {
     NSMenu *menu = [[NSMenu alloc] init];
 
-    self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPM) keyEquivalent:@""];
+    self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPMmenu) keyEquivalent:@""];
     [self.bpmMenu setState: NSOnState];
 
     [menu addItem:[NSMenuItem separatorItem]];
@@ -150,7 +158,7 @@
     self.statusItem.menu = menu;
 }
 
-- (void)toggleBPM {
+- (void)toggleBPMmenu {
     if (self.showBPM) {
         self.showBPM = false;
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:NO] forKey:@"showBPM"];
@@ -161,6 +169,14 @@
         [self.bpmMenu setState: NSOnState];
     }
     
+}
+
+- (void)renderBPM:(NSTimer *)timer {
+    if (self.bpm > 0 && self.showBPM) {
+        self.statusItem.title = [self.formatter stringFromNumber:[NSNumber numberWithFloat:self.bpm]];
+    } else {
+        self.statusItem.title = @"";
+    }
 }
 
 static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *srcRef) {
@@ -220,11 +236,6 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
                         
                         double newBPM = (1000000 / ad.intervalInNanoseconds / BEAT_TICKS) * 60;
                         ad.bpm = (newBPM*SMOOTHING_FACTOR) + ( ad.bpm * ( 1.0f - SMOOTHING_FACTOR) );
-                        if (ad.bpm > 0 && ad.showBPM) {
-                            ad.statusItem.title = [ad.formatter stringFromNumber:[NSNumber numberWithFloat:ad.bpm]];
-                        } else {
-                            ad.statusItem.title = @"";
-                        }
                         
                     }
                 }
