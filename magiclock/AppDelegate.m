@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "ESSApplicationCategory.h"
 
 #include <CoreMIDI/CoreMIDI.h>
 
@@ -33,6 +34,11 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+
+    // Check if Trackpad does exist
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testForceTouchAvailability:) name:ESS_FORCETOUCHAVAILABILITY_NOTIFICATIONNAME object:nil];
+
+    [self showModalForceTouchAvailable:[NSApp isForceTouchCapableDeviceAvailable:nil]];
 
     self.clock_count = BEAT_TICKS;
     self.bpm = 0;
@@ -72,6 +78,24 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
 
 }
+
+- (void)testForceTouchAvailability:(NSNotification *)note
+{
+    [self showModalForceTouchAvailable:((NSNumber *)note.userInfo[kESSForceTouchAvailableUserInfoKey]).boolValue];
+}
+
+- (void)showModalForceTouchAvailable:(BOOL)available
+{
+    if (available == NO) {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Trackpad not supported"];
+        [alert setInformativeText:@"Your trackpad does not support haptic feedback."];
+        [alert addButtonWithTitle:@"Ok"];
+        [alert runModal];
+
+    }
+}
+
 
 - (void)showHelpModal
 {

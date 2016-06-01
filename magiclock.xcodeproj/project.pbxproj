@@ -13,6 +13,9 @@
 		124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124952F01CC2B84900DEFF0C /* MainMenu.xib */; };
 		124952F31CC39DC300DEFF0C /* trayicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F21CC39DC300DEFF0C /* trayicon.png */; };
 		124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F41CC39DDA00DEFF0C /* trayicon-tic.png */; };
+		641D45B21CFF1CC300C9D520 /* ESSApplicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */; };
+		641D45B41CFF1D0F00C9D520 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */; };
+		641D45B61CFF1D2100C9D520 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B51CFF1D2100C9D520 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,10 @@
 		124952F21CC39DC300DEFF0C /* trayicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trayicon.png; sourceTree = "<group>"; };
 		124952F41CC39DDA00DEFF0C /* trayicon-tic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic.png"; sourceTree = "<group>"; };
 		125095951CF7179000CC06D3 /* magiclock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = magiclock.entitlements; sourceTree = "<group>"; };
+		641D45B01CFF1CC300C9D520 /* ESSApplicationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSApplicationCategory.h; sourceTree = "<group>"; };
+		641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSApplicationCategory.m; sourceTree = "<group>"; };
+		641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		641D45B51CFF1D2100C9D520 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641D45B61CFF1D2100C9D520 /* IOKit.framework in Frameworks */,
+				641D45B41CFF1D0F00C9D520 /* CoreMIDI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 		124952B81CC15ED500DEFF0C = {
 			isa = PBXGroup;
 			children = (
+				641D45B51CFF1D2100C9D520 /* IOKit.framework */,
+				641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */,
 				125095951CF7179000CC06D3 /* magiclock.entitlements */,
 				124952C31CC15ED500DEFF0C /* magiclock */,
 				124952C21CC15ED500DEFF0C /* Products */,
@@ -59,6 +70,8 @@
 		124952C31CC15ED500DEFF0C /* magiclock */ = {
 			isa = PBXGroup;
 			children = (
+				641D45B01CFF1CC300C9D520 /* ESSApplicationCategory.h */,
+				641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */,
 				124952F01CC2B84900DEFF0C /* MainMenu.xib */,
 				124952C41CC15ED500DEFF0C /* AppDelegate.h */,
 				124952C51CC15ED500DEFF0C /* AppDelegate.m */,
@@ -159,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641D45B21CFF1CC300C9D520 /* ESSApplicationCategory.m in Sources */,
 				124952C91CC15ED500DEFF0C /* main.m in Sources */,
 				124952C61CC15ED500DEFF0C /* AppDelegate.m in Sources */,
 			);
