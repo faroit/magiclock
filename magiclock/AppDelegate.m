@@ -108,8 +108,8 @@
 - (void)showHelpModal
 {
     NSAlert *alert = [[NSAlert alloc] init];
-    [alert setMessageText:@"How does it work?"];
-    [alert setInformativeText:@"1. Connect your Magic Trackpad 2\n2. Connect MIDI Clock Output to \"HaptiClock\""];
+    [alert setMessageText:@"How to use Magiclock?"];
+    [alert setInformativeText:@"Connect any MIDI Clock Output to \"Magiclock\" and feel the beat..."];
     [alert addButtonWithTitle:@"Ok"];
     [alert runModal];
 }
