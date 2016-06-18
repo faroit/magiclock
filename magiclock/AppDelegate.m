@@ -24,6 +24,10 @@
 @property double tickDelta;
 
 @property (strong, nonatomic) NSStatusItem *statusItem;
+
+@property (strong, nonatomic) NSImage *notic;
+@property (strong, nonatomic) NSImage *tic;
+
 @property (strong, nonatomic) NSMenuItem * bpmMenu;
 @property NSNumberFormatter *formatter;
 
@@ -55,6 +59,12 @@
     self.bpm = 0;
     self.currentClockTime = 0;
     self.tickDelta = 0;
+
+    // The image that will be shown in the menu bar
+    self.notic = [NSImage imageNamed:@"trayicon"];
+    [self.notic setTemplate:YES];
+    self.tic = [NSImage imageNamed:@"trayicon-tic"];
+    [self.tic setTemplate:YES];
 
     [self setupStatusItem];
 
@@ -119,11 +129,7 @@
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     self.statusItem.title = @"";
 
-    // The image that will be shown in the menu bar
-    NSImage *image = [NSImage imageNamed:@"trayicon"];
-    [image setTemplate:YES];
-
-    self.statusItem.image = image;
+    self.statusItem.image = self.notic;
     self.statusItem.highlightMode = NO;
 
     [self updateStatusItemMenu];
@@ -141,7 +147,7 @@
 }
 
 - (void)resetStatusIcon:(NSTimer *)timer {
-    self.statusItem.image = [NSImage imageNamed:@"trayicon"];
+    self.statusItem.image = self.notic;
 }
 
 - (void)updateStatusItemMenu
@@ -246,7 +252,7 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
 
                 if (ad.clock_count % BEAT_TICKS == 0) {
                     ad.clock_count = 0;
-                    ad.statusItem.image = [NSImage imageNamed:@"trayicon-tic"];
+                    ad.statusItem.image = ad.tic;
 
                     // Provide haptic feedback                   
                     [[NSHapticFeedbackManager defaultPerformer] performFeedbackPattern:NSHapticFeedbackPatternLevelChange performanceTime:NSHapticFeedbackPerformanceTimeNow];
