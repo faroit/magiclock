@@ -13,6 +13,8 @@
 		124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124952F01CC2B84900DEFF0C /* MainMenu.xib */; };
 		124952F31CC39DC300DEFF0C /* trayicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F21CC39DC300DEFF0C /* trayicon.png */; };
 		124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F41CC39DDA00DEFF0C /* trayicon-tic.png */; };
+		124B4FF01D15C96B00B925F0 /* trayicon-tic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124B4FEE1D15C96B00B925F0 /* trayicon-tic@2x.png */; };
+		124B4FF11D15C96B00B925F0 /* trayicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */; };
 		641D45B21CFF1CC300C9D520 /* ESSApplicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */; };
 		641D45B41CFF1D0F00C9D520 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */; };
 		641D45B61CFF1D2100C9D520 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B51CFF1D2100C9D520 /* IOKit.framework */; };
@@ -28,6 +30,8 @@
 		124952F01CC2B84900DEFF0C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		124952F21CC39DC300DEFF0C /* trayicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trayicon.png; sourceTree = "<group>"; };
 		124952F41CC39DDA00DEFF0C /* trayicon-tic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic.png"; sourceTree = "<group>"; };
+		124B4FEE1D15C96B00B925F0 /* trayicon-tic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic@2x.png"; sourceTree = "<group>"; };
+		124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon@2x.png"; sourceTree = "<group>"; };
 		125095951CF7179000CC06D3 /* magiclock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = magiclock.entitlements; sourceTree = "<group>"; };
 		641D45B01CFF1CC300C9D520 /* ESSApplicationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSApplicationCategory.h; sourceTree = "<group>"; };
 		641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSApplicationCategory.m; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 		124952C71CC15ED500DEFF0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				124B4FEE1D15C96B00B925F0 /* trayicon-tic@2x.png */,
+				124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */,
 				124952F41CC39DDA00DEFF0C /* trayicon-tic.png */,
 				124952F21CC39DC300DEFF0C /* trayicon.png */,
 				124952C81CC15ED500DEFF0C /* main.m */,
@@ -160,6 +166,8 @@
 			files = (
 				124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */,
 				124952CB1CC15ED500DEFF0C /* Assets.xcassets in Resources */,
+				124B4FF01D15C96B00B925F0 /* trayicon-tic@2x.png in Resources */,
+				124B4FF11D15C96B00B925F0 /* trayicon@2x.png in Resources */,
 				124952F31CC39DC300DEFF0C /* trayicon.png in Resources */,
 				124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */,
 			);

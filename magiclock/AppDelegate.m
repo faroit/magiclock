@@ -34,6 +34,17 @@
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    if (!([[NSUserDefaults standardUserDefaults] boolForKey:kAlreadyBeenLaunched] || [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"])) {
+        // First launch
+        // Setting userDefaults for next time
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kAlreadyBeenLaunched];
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
+        
+        [self showHelpModal];
+    }
+    
+    self.showBPM = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"];
 
     // Check if Trackpad does exist
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testForceTouchAvailability:) name:ESS_FORCETOUCHAVAILABILITY_NOTIFICATIONNAME object:nil];
@@ -55,25 +66,14 @@
     [self.formatter setMaximumFractionDigits:1];
     [self.formatter setMinimumFractionDigits:1];
     
-    if (! [[NSUserDefaults standardUserDefaults] boolForKey:kAlreadyBeenLaunched]) {
-        // First launch
-        // Setting userDefaults for next time
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kAlreadyBeenLaunched];
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"showBPM"];
-
-        [self showHelpModal];
-       }
-    
-    self.showBPM = [[NSUserDefaults standardUserDefaults] boolForKey:@"showBPM"];
-
     // Setting up Core MIDI
     OSStatus status;
     
     MIDIClientRef   midiClient;
     MIDIEndpointRef     inPort;
     
-    status = MIDIClientCreate(CFSTR("FtC MIDI client"), NULL, (__bridge void *)(self), &midiClient);
-    status = MIDIDestinationCreate(midiClient, CFSTR("HaptiClock"), midiInputCallback, (__bridge void *)(self), &inPort);
+    status = MIDIClientCreate(CFSTR("Magiclock MIDI client"), NULL, (__bridge void *)(self), &midiClient);
+    status = MIDIDestinationCreate(midiClient, CFSTR("Magiclock"), midiInputCallback, (__bridge void *)(self), &inPort);
     
     // Update the Menubar every 1s to show the BPM    
     [NSTimer scheduledTimerWithTimeInterval:(NSTimeInterval)(1.0f)
@@ -96,7 +96,7 @@
 {
     if (available == NO) {
         NSAlert *alert = [[NSAlert alloc] init];
-        [alert setMessageText:@"Trackpad not supported"];
+        [alert setMessageText:@"No supported Trackpad found"];
         [alert setInformativeText:@"Your trackpad does not support haptic feedback."];
         [alert addButtonWithTitle:@"Ok"];
         [alert runModal];
@@ -149,7 +149,11 @@
     NSMenu *menu = [[NSMenu alloc] init];
 
     self.bpmMenu = [menu addItemWithTitle:@"Show BPM" action:@selector(toggleBPMmenu) keyEquivalent:@""];
-    [self.bpmMenu setState: NSOnState];
+    if (self.showBPM) {
+         [self.bpmMenu setState: NSOnState];
+    } else {
+         [self.bpmMenu setState: NSOffState];
+    }
 
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Help" action:@selector(showHelpModal) keyEquivalent:@""];
@@ -255,6 +259,7 @@ static void midiInputCallback (const MIDIPacketList *list, void *procRef, void *
             else if (status == 0xFC) {
                 ad.clock_count = BEAT_TICKS;
                 ad.statusItem.title = @"";
+                ad.bpm = 0;
             }
 
             iByte += size;
