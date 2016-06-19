@@ -1,5 +1,7 @@
 # Magiclock
 
+[![Build Status](https://travis-ci.org/faroit/magiclock.svg?branch=master)](https://travis-ci.org/faroit/magiclock)
+
 Ever found the beepy metronome in you DAW annoying while producing music? Now you can turn off of the metronome and feel the beat on you trackpad. __Magiclock__ is an OS X app that uses haptic feedback (also called 'Taptic Engine' by Apple) to give you the MIDI clock beat within your Magic Trackpad.
 
 ## Features
