@@ -23,7 +23,7 @@ receives MIDI Clock events and performs haptic feedback every beat/quarter note.
 
 ## Download/Installation
 
-[Download the zip](https://github.com/faroit/magiclock/releases/download/v0.1/magiclock_v01.zip) and launch __magiclock.app__. Drag the app into your Applications folder, if you like.
+[Download the zip](https://github.com/faroit/magiclock/releases/download/v0.1/magiclock.zip) and launch __magiclock.app__. Drag the app into your Applications folder, if you like.
 
 
 ## Usage
