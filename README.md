@@ -1,6 +1,6 @@
 # Magiclock
 
-Ever found the beepy metronome in you DAW annoying while producing music? Now you can turn off of the metronome and feel the beat on you trackpad. __Magiclock__ is an OS X app that uses haptic feedback (also called as the 'Taptic Engine' by Apple) to give you a the MIDI clock beat underneath your magic trackpad 2.
+Ever found the beepy metronome in you DAW annoying while producing music? Now you can turn off of the metronome and feel the beat on you trackpad. __Magiclock__ is an OS X app that uses haptic feedback (also called as the 'Taptic Engine' by Apple) to give you a the MIDI clock beat underneath your Magic Trackpad.
 
 ## Features
 
@@ -38,7 +38,7 @@ In Bitwig you have manually add a "Generic MIDI Clock Transmitter" device and th
 
 ![](https://cloud.githubusercontent.com/assets/72940/16177257/f28dfce8-3626-11e6-878e-e427966dbcc9.png)
 
-## External Devices / MIDI Patchbay
+### External Devices / MIDI Patchbay
 
 You can use the [MIDI Patch bay app](http://notahat.com/midi_patchbay/) to route MIDI clock events from any device to the __magiclock__ virtual MIDI Output Device. Filter the Input for clock events only as shown in the screen shot:
 
