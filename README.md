@@ -58,6 +58,10 @@ You can use the [MIDI Patch bay app](http://notahat.com/midi_patchbay/) to route
 
   **A**: Actually, no. Even though there are multiple levels of pressure the trackpad can sense, there is only one type of haptic feedback which is a simple __tap__. Maybe this will change in the future, so that it would be possible to differentiate offbeats from onbeats.
 
+## Contributors
+
+Thanks to [Patrici-o](https://github.com/patrici-o) for beta testings.
+
 ## License
 
 MIT License
