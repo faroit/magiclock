@@ -52,7 +52,7 @@ You can use the [MIDI Patch bay app](http://notahat.com/midi_patchbay/) to route
 
 - **Q**: If you connect multiple devices to magiclock, my trackpad goes crazy!
 
-  **A**: Yes, you should not do that. Currently it does not prevent the trackpad from triggering feedback from multiple devices. Also note the warning from Apples API documentation:
+  **A**: Yes, you should not do that. Currently it does not prevent the trackpad from triggering feedback from multiple devices. Also note the warning from [Apples API documentation]((https://developer.apple.com/library/mac/documentation/AppKit/Reference/NSHapticFeedbackPerformer_protocol/index.html#//apple_ref/occ/intf/NSHapticFeedbackPerformer):
 
   > Haptic feedback is intended to be provided in response to a user action, such as aligning one object to another. Do not use it to provide feedback for events that are not user initiated. Excessive or unnecessary haptic feedback could be interpreted by the user as a malfunction and could encourage the user to disable haptic feedback entirely.
 
