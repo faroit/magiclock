@@ -52,7 +52,7 @@ You can use the [MIDI Patch bay app](http://notahat.com/midi_patchbay/) to route
 
 - **Q**: Can you support [Ableton Link](https://www.ableton.com/en/link/) so that the magiclock can also align beats?
 
-  **A**: For now [Ableton only supports iOS](http://ableton.github.io/linkkit), so there is no (legal) way to add Link support.
+  **A**: Link support will be added soon!
 
 - **Q**: If you connect multiple devices to magiclock and set up a high BPM, my trackpad goes crazy!
 
