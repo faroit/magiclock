@@ -114,7 +114,6 @@
     }
 }
 
-
 - (void)showHelpModal
 {
     NSAlert *alert = [[NSAlert alloc] init];
