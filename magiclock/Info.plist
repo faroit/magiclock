@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 Fabian-Robert Stöter. All rights reserved.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Magiclock uses the local network to discover and synchronize with Ableton Link peers.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

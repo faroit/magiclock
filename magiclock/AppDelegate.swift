@@ -1,15 +1,40 @@
 import AppKit
 import CoreMIDI
 import Darwin.Mach
+#if SWIFT_PACKAGE
+import MagiclockCore
+#endif
 
 private let beatTicks = 24
 private let smoothingFactor = 0.5
 private let alreadyBeenLaunchedKey = "AlreadyBeenLaunched"
 private let showBPMKey = "showBPM"
+private let abletonLinkEnabledKey = "abletonLinkEnabled"
+private let downbeatAccentModeKey = "downbeatAccentMode"
+private let beatsPerBar = 4
+
+private enum DownbeatAccentMode: String, CaseIterable {
+    case off
+    case light
+    case strong
+
+    var title: String {
+        switch self {
+        case .off:
+            return "Off"
+        case .light:
+            return "Light"
+        case .strong:
+            return "Strong"
+        }
+    }
+}
 
 @objc(AppDelegate)
 final class AppDelegate: NSObject, NSApplicationDelegate {
     fileprivate var showBPM = false
+    fileprivate var abletonLinkEnabled = false
+    fileprivate var midiBeatIndex = 0
     fileprivate var clockCount = beatTicks
     fileprivate var bpm = 0.0
     fileprivate var currentClockTime = 0.0
@@ -20,10 +45,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: NSStatusItem?
     private var notic: NSImage?
     private var tic: NSImage?
+    private var abletonLinkMenu: NSMenuItem?
+    private var abletonLinkPeersMenu: NSMenuItem?
+    private var downbeatAccentMenuItems: [DownbeatAccentMode: NSMenuItem] = [:]
     private var bpmMenu: NSMenuItem?
     private var diagnosticsWindow: NSWindow?
     private let formatter = NumberFormatter()
     private let forceTouchMonitor = ForceTouchDeviceMonitor()
+    private let abletonLinkClock = AbletonLinkClock()
+    private var latestAbletonLinkStatus: AbletonLinkStatus?
+    private var downbeatAccentMode = DownbeatAccentMode.strong
     private var midiClient = MIDIClientRef()
     private var midiDestination = MIDIEndpointRef()
 
@@ -38,6 +69,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         showBPM = defaults.bool(forKey: showBPMKey)
+        abletonLinkEnabled = defaults.bool(forKey: abletonLinkEnabledKey)
+        if let rawAccentMode = defaults.string(forKey: downbeatAccentModeKey),
+           let accentMode = DownbeatAccentMode(rawValue: rawAccentMode) {
+            downbeatAccentMode = accentMode
+        }
 
         NotificationCenter.default.addObserver(
             self,
@@ -55,6 +91,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         setupStatusItem()
         setupNumberFormatter()
         setupMIDI()
+        setupAbletonLink()
 
         Timer.scheduledTimer(
             timeInterval: 1.0,
@@ -66,6 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        abletonLinkClock.stop()
         forceTouchMonitor.stop()
     }
 
@@ -136,13 +174,53 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
+    private func setupAbletonLink() {
+        abletonLinkClock.onBeat = { [weak self] event in
+            DispatchQueue.main.async {
+                self?.handleBeatTick(event.kind)
+            }
+        }
+
+        abletonLinkClock.onStatusUpdate = { [weak self] status in
+            DispatchQueue.main.async {
+                self?.handleAbletonLinkStatus(status)
+            }
+        }
+
+        abletonLinkClock.start()
+        abletonLinkClock.setEnabled(abletonLinkEnabled)
+    }
+
     private func updateStatusItemMenu() {
         let menu = NSMenu()
+
+        let abletonLinkItem = menu.addItem(withTitle: "Use Ableton Link", action: #selector(toggleAbletonLink), keyEquivalent: "")
+        abletonLinkItem.target = self
+        abletonLinkItem.state = abletonLinkEnabled ? .on : .off
+        abletonLinkMenu = abletonLinkItem
+
+        let peersItem = menu.addItem(withTitle: "Link Peers: \(latestAbletonLinkStatus?.peerCount ?? 0)", action: nil, keyEquivalent: "")
+        peersItem.isEnabled = false
+        abletonLinkPeersMenu = peersItem
+
+        menu.addItem(.separator())
 
         let bpmItem = menu.addItem(withTitle: "Show BPM", action: #selector(toggleBPMMenu), keyEquivalent: "")
         bpmItem.target = self
         bpmItem.state = showBPM ? .on : .off
         bpmMenu = bpmItem
+
+        let accentItem = menu.addItem(withTitle: "Downbeat Accent", action: nil, keyEquivalent: "")
+        let accentMenu = NSMenu()
+        downbeatAccentMenuItems = [:]
+        for mode in DownbeatAccentMode.allCases {
+            let item = accentMenu.addItem(withTitle: mode.title, action: #selector(selectDownbeatAccentMode(_:)), keyEquivalent: "")
+            item.target = self
+            item.representedObject = mode.rawValue
+            item.state = mode == downbeatAccentMode ? .on : .off
+            downbeatAccentMenuItems[mode] = item
+        }
+        menu.setSubmenu(accentMenu, for: accentItem)
 
         menu.addItem(.separator())
 
@@ -161,10 +239,38 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.menu = menu
     }
 
+    @objc private func toggleAbletonLink() {
+        abletonLinkEnabled.toggle()
+        UserDefaults.standard.set(abletonLinkEnabled, forKey: abletonLinkEnabledKey)
+        abletonLinkMenu?.state = abletonLinkEnabled ? .on : .off
+        abletonLinkClock.setEnabled(abletonLinkEnabled)
+
+        if !abletonLinkEnabled {
+            resetClock()
+        }
+    }
+
     @objc private func toggleBPMMenu() {
         showBPM.toggle()
         UserDefaults.standard.set(showBPM, forKey: showBPMKey)
         bpmMenu?.state = showBPM ? .on : .off
+    }
+
+    @objc private func selectDownbeatAccentMode(_ sender: NSMenuItem) {
+        guard let rawValue = sender.representedObject as? String,
+              let mode = DownbeatAccentMode(rawValue: rawValue) else {
+            return
+        }
+
+        downbeatAccentMode = mode
+        UserDefaults.standard.set(mode.rawValue, forKey: downbeatAccentModeKey)
+        updateDownbeatAccentMenu()
+    }
+
+    private func updateDownbeatAccentMenu() {
+        for (mode, item) in downbeatAccentMenuItems {
+            item.state = mode == downbeatAccentMode ? .on : .off
+        }
     }
 
     @objc private func testHapticFeedback() {
@@ -181,8 +287,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func renderBPM(_ timer: Timer) {
-        if bpm > 0 && showBPM {
-            statusItem?.button?.title = formatter.string(from: NSNumber(value: bpm)) ?? ""
+        let displayBPM = abletonLinkEnabled ? latestAbletonLinkStatus?.tempo ?? 0 : bpm
+
+        if displayBPM > 0 && showBPM {
+            statusItem?.button?.title = formatter.string(from: NSNumber(value: displayBPM)) ?? ""
         } else {
             statusItem?.button?.title = ""
         }
@@ -204,8 +312,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem?.button?.image = notic
     }
 
-    fileprivate func handleBeatTick() {
-        performHapticFeedback()
+    fileprivate func handleBeatTick(_ kind: BeatKind = .regular) {
+        performHapticFeedback(kind)
 
         DispatchQueue.main.async { [weak self] in
             guard let self else {
@@ -217,8 +325,32 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func performHapticFeedback() {
-        NSHapticFeedbackManager.defaultPerformer.perform(.levelChange, performanceTime: .now)
+    private func handleAbletonLinkStatus(_ status: AbletonLinkStatus) {
+        latestAbletonLinkStatus = status
+        abletonLinkPeersMenu?.title = "Link Peers: \(status.peerCount)"
+    }
+
+    private func performHapticFeedback(_ kind: BeatKind) {
+        guard kind == .downbeat else {
+            performHapticPattern(.levelChange)
+            return
+        }
+
+        switch downbeatAccentMode {
+        case .off:
+            performHapticPattern(.levelChange)
+        case .light:
+            performHapticPattern(.generic)
+        case .strong:
+            performHapticPattern(.levelChange)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) {
+                self.performHapticPattern(.alignment)
+            }
+        }
+    }
+
+    private func performHapticPattern(_ pattern: NSHapticFeedbackManager.FeedbackPattern) {
+        NSHapticFeedbackManager.defaultPerformer.perform(pattern, performanceTime: .now)
     }
 
     private func performHapticBurst() {
@@ -266,6 +398,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     fileprivate func resetClock() {
         clockCount = beatTicks
+        midiBeatIndex = 0
         bpm = 0
 
         DispatchQueue.main.async { [weak self] in
@@ -340,6 +473,10 @@ private func midiMessageSize(for status: UInt8) -> Int {
 }
 
 private func processClockTick(packet: MIDIPacket, appDelegate: AppDelegate) {
+    guard !appDelegate.abletonLinkEnabled else {
+        return
+    }
+
     appDelegate.previousClockTime = appDelegate.currentClockTime
     appDelegate.currentClockTime = Double(packet.timeStamp)
 
@@ -364,7 +501,9 @@ private func processClockTick(packet: MIDIPacket, appDelegate: AppDelegate) {
 
     if appDelegate.clockCount % beatTicks == 0 {
         appDelegate.clockCount = 0
-        appDelegate.handleBeatTick()
+        let beatKind: BeatKind = appDelegate.midiBeatIndex % beatsPerBar == 0 ? .downbeat : .regular
+        appDelegate.midiBeatIndex += 1
+        appDelegate.handleBeatTick(beatKind)
     }
 
     appDelegate.clockCount += 1
