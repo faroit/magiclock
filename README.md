@@ -20,7 +20,7 @@ receives MIDI Clock events and performs haptic feedback every beat/quarter note.
 
 ## Requirements
 
-* OS X 10.11 El Capitan and later.
+* macOS 10.13 High Sierra and later.
 * Force Touch trackpad (2013 Macbook Pro, New Macbook, [Magic Trackpad 2](http://www.apple.com/magic-accessories/))
 * MIDI clock output from DAW or hardware MIDI device
 

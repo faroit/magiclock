@@ -1,3 +1,5 @@
+.build/
+
 <<<<<<< 39fae439b331ed8164aa79b47f5c6f6b6f00ec8f
 # Byte-compiled / optimized / DLL files
 __pycache__/
