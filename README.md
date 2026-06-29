@@ -1,12 +1,12 @@
 # Magiclock
 
-[![GitHub release](https://img.shields.io/github/release/faroit/magiclock.svg?style=flat-square)](https://github.com/faroit/magiclock/releases/tag/v0.1)
+[![GitHub release](https://img.shields.io/github/release/faroit/magiclock.svg?style=flat-square)](https://github.com/faroit/magiclock/releases/tag/v0.2)
 [![Github All Releases](https://img.shields.io/github/downloads/faroit/magiclock/total.svg?style=flat-square)]()
-[![Build Status](https://travis-ci.org/faroit/magiclock.svg?branch=master)](https://travis-ci.org/faroit/magiclock)
+[![CI](https://github.com/faroit/magiclock/actions/workflows/ci.yml/badge.svg)](https://github.com/faroit/magiclock/actions/workflows/ci.yml)
 
 Ever found the beepy metronome in your DAW annoying while producing music? Now you can turn off of the metronome and feel the beat on you trackpad. __Magiclock__ is an OS X app that uses haptic feedback (also called Taptic Engine™) to give you the MIDI clock beat within your Magic Trackpad.
 
-[Download](https://github.com/faroit/magiclock/releases/download/v0.1/magiclock.zip) 
+[Download the latest version, v0.2](https://github.com/faroit/magiclock/releases/download/v0.2/magiclock.zip)
 
 ## Features
 
@@ -21,14 +21,17 @@ receives MIDI Clock events and performs haptic feedback every beat/quarter note.
 
 ## Requirements
 
+Magiclock v0.2 requires:
+
 * macOS 10.13 High Sierra and later.
 * Force Touch trackpad (2013 Macbook Pro, New Macbook, [Magic Trackpad 2](http://www.apple.com/magic-accessories/))
 * MIDI clock output from DAW or hardware MIDI device, or an Ableton Link session
+* For source builds: Swift 5.9 or newer with Apple Command Line Tools or Xcode.
 
 
 ## Download/Installation
 
-[Download the zip](https://github.com/faroit/magiclock/releases/download/v0.1/magiclock.zip) and launch __magiclock.app__. Be aware, that this app is not signed, so you might need to adjust your [security settings](https://support.apple.com/kb/PH18657?locale=en_US) Drag the app into your Applications folder, if you like.
+[Download the v0.2 zip](https://github.com/faroit/magiclock/releases/download/v0.2/magiclock.zip) and launch __magiclock.app__. Be aware, that this app is not signed, so you might need to adjust your [security settings](https://support.apple.com/kb/PH18657?locale=en_US) Drag the app into your Applications folder, if you like.
 
 
 ## Usage
