@@ -7,24 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		124952C61CC15ED500DEFF0C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 124952C51CC15ED500DEFF0C /* AppDelegate.m */; };
-		124952C91CC15ED500DEFF0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 124952C81CC15ED500DEFF0C /* main.m */; };
+		124952C61CC15ED500DEFF0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124952C51CC15ED500DEFF0C /* AppDelegate.swift */; };
+		124952C91CC15ED500DEFF0C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124952C81CC15ED500DEFF0C /* main.swift */; };
 		124952CB1CC15ED500DEFF0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 124952CA1CC15ED500DEFF0C /* Assets.xcassets */; };
 		124952F11CC2B84900DEFF0C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 124952F01CC2B84900DEFF0C /* MainMenu.xib */; };
 		124952F31CC39DC300DEFF0C /* trayicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F21CC39DC300DEFF0C /* trayicon.png */; };
 		124952F51CC39DDA00DEFF0C /* trayicon-tic.png in Resources */ = {isa = PBXBuildFile; fileRef = 124952F41CC39DDA00DEFF0C /* trayicon-tic.png */; };
 		124B4FF01D15C96B00B925F0 /* trayicon-tic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124B4FEE1D15C96B00B925F0 /* trayicon-tic@2x.png */; };
 		124B4FF11D15C96B00B925F0 /* trayicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */; };
-		641D45B21CFF1CC300C9D520 /* ESSApplicationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */; };
+		A10000000000000000000001 /* MagiclockCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000002 /* MagiclockCore.swift */; };
+		A10000000000000000000003 /* LinkBeatScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000004 /* LinkBeatScheduler.swift */; };
+		A10000000000000000000005 /* AbletonLinkClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000006 /* AbletonLinkClock.swift */; };
+		A10000000000000000000007 /* AbletonLinkBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000008 /* AbletonLinkBridge.cpp */; };
+		641D45B21CFF1CC300C9D520 /* ForceTouchDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641D45B11CFF1CC300C9D520 /* ForceTouchDeviceMonitor.swift */; };
 		641D45B41CFF1D0F00C9D520 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */; };
 		641D45B61CFF1D2100C9D520 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641D45B51CFF1D2100C9D520 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		124952C11CC15ED500DEFF0C /* magiclock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = magiclock.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		124952C41CC15ED500DEFF0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		124952C51CC15ED500DEFF0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		124952C81CC15ED500DEFF0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		124952C51CC15ED500DEFF0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		124952C81CC15ED500DEFF0C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		124952CA1CC15ED500DEFF0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		124952CF1CC15ED500DEFF0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		124952F01CC2B84900DEFF0C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -33,8 +36,13 @@
 		124B4FEE1D15C96B00B925F0 /* trayicon-tic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon-tic@2x.png"; sourceTree = "<group>"; };
 		124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trayicon@2x.png"; sourceTree = "<group>"; };
 		125095951CF7179000CC06D3 /* magiclock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = magiclock.entitlements; sourceTree = "<group>"; };
-		641D45B01CFF1CC300C9D520 /* ESSApplicationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESSApplicationCategory.h; sourceTree = "<group>"; };
-		641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESSApplicationCategory.m; sourceTree = "<group>"; };
+		A10000000000000000000002 /* MagiclockCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagiclockCore.swift; sourceTree = "<group>"; };
+		A10000000000000000000004 /* LinkBeatScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkBeatScheduler.swift; sourceTree = "<group>"; };
+		A10000000000000000000006 /* AbletonLinkClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbletonLinkClock.swift; sourceTree = "<group>"; };
+		A10000000000000000000008 /* AbletonLinkBridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AbletonLinkBridge.cpp; sourceTree = "<group>"; };
+		A10000000000000000000009 /* AbletonLinkBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = include/AbletonLinkBridge.h; sourceTree = "<group>"; };
+		A1000000000000000000000A /* magiclock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "magiclock-Bridging-Header.h"; sourceTree = "<group>"; };
+		641D45B11CFF1CC300C9D520 /* ForceTouchDeviceMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceTouchDeviceMonitor.swift; sourceTree = "<group>"; };
 		641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		641D45B51CFF1D2100C9D520 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -58,6 +66,7 @@
 				641D45B51CFF1D2100C9D520 /* IOKit.framework */,
 				641D45B31CFF1D0F00C9D520 /* CoreMIDI.framework */,
 				125095951CF7179000CC06D3 /* magiclock.entitlements */,
+				A10000000000000000000010 /* Sources */,
 				124952C31CC15ED500DEFF0C /* magiclock */,
 				124952C21CC15ED500DEFF0C /* Products */,
 			);
@@ -74,11 +83,10 @@
 		124952C31CC15ED500DEFF0C /* magiclock */ = {
 			isa = PBXGroup;
 			children = (
-				641D45B01CFF1CC300C9D520 /* ESSApplicationCategory.h */,
-				641D45B11CFF1CC300C9D520 /* ESSApplicationCategory.m */,
+				641D45B11CFF1CC300C9D520 /* ForceTouchDeviceMonitor.swift */,
+				A1000000000000000000000A /* magiclock-Bridging-Header.h */,
 				124952F01CC2B84900DEFF0C /* MainMenu.xib */,
-				124952C41CC15ED500DEFF0C /* AppDelegate.h */,
-				124952C51CC15ED500DEFF0C /* AppDelegate.m */,
+				124952C51CC15ED500DEFF0C /* AppDelegate.swift */,
 				124952CA1CC15ED500DEFF0C /* Assets.xcassets */,
 				124952CF1CC15ED500DEFF0C /* Info.plist */,
 				124952C71CC15ED500DEFF0C /* Supporting Files */,
@@ -93,9 +101,37 @@
 				124B4FEF1D15C96B00B925F0 /* trayicon@2x.png */,
 				124952F41CC39DDA00DEFF0C /* trayicon-tic.png */,
 				124952F21CC39DC300DEFF0C /* trayicon.png */,
-				124952C81CC15ED500DEFF0C /* main.m */,
+				124952C81CC15ED500DEFF0C /* main.swift */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A10000000000000000000010 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000011 /* MagiclockCore */,
+				A10000000000000000000012 /* AbletonLinkBridge */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000011 /* MagiclockCore */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000006 /* AbletonLinkClock.swift */,
+				A10000000000000000000004 /* LinkBeatScheduler.swift */,
+				A10000000000000000000002 /* MagiclockCore.swift */,
+			);
+			path = MagiclockCore;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000012 /* AbletonLinkBridge */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000008 /* AbletonLinkBridge.cpp */,
+				A10000000000000000000009 /* AbletonLinkBridge.h */,
+			);
+			path = AbletonLinkBridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,9 +216,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				641D45B21CFF1CC300C9D520 /* ESSApplicationCategory.m in Sources */,
-				124952C91CC15ED500DEFF0C /* main.m in Sources */,
-				124952C61CC15ED500DEFF0C /* AppDelegate.m in Sources */,
+				641D45B21CFF1CC300C9D520 /* ForceTouchDeviceMonitor.swift in Sources */,
+				A10000000000000000000005 /* AbletonLinkClock.swift in Sources */,
+				A10000000000000000000003 /* LinkBeatScheduler.swift in Sources */,
+				A10000000000000000000001 /* MagiclockCore.swift in Sources */,
+				A10000000000000000000007 /* AbletonLinkBridge.cpp in Sources */,
+				124952C91CC15ED500DEFF0C /* main.swift in Sources */,
+				124952C61CC15ED500DEFF0C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -286,7 +326,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -301,12 +341,25 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = magiclock/Info.plist;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"LINK_PLATFORM_UNIX=1",
+					"LINK_PLATFORM_MACOSX=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Sources/AbletonLinkBridge/include",
+					"$(SRCROOT)/Vendor/AbletonLink/include",
+					"$(SRCROOT)/Vendor/AbletonLink/modules/asio-standalone/asio/include",
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
 				PRODUCT_NAME = magiclock;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "magiclock/magiclock-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -319,12 +372,25 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = magiclock/Info.plist;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"LINK_PLATFORM_UNIX=1",
+					"LINK_PLATFORM_MACOSX=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Sources/AbletonLinkBridge/include",
+					"$(SRCROOT)/Vendor/AbletonLink/include",
+					"$(SRCROOT)/Vendor/AbletonLink/modules/asio-standalone/asio/include",
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.faroit.magiclock;
 				PRODUCT_NAME = magiclock;
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "magiclock/magiclock-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
